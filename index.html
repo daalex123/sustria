@@ -842,18 +842,23 @@
 
                 </div>
             </div>
-            <form class="contact-form" data-aos="fade-left">
+            <form class="contact-form" data-aos="fade-left" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="d61dde01-5cd7-408c-af9a-74830067f6a6">
+                <input type="hidden" name="subject" value="New Project Inquiry - SUSTREIA Website">
+                <input type="hidden" name="from_name" value="SUSTREIA Website Contact Form">
+                <input type="hidden" name="redirect" value="https://www.sustreia.com/#contact">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" name="name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" placeholder="Phone Number">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-group">
-                    <select>
+                    <select name="service">
                         <option value="" disabled selected>Select Service</option>
                         <option value="construction">Construction</option>
                         <option value="interior">Interior Design</option>
@@ -863,15 +868,24 @@
                     </select>
                 </div>
                 <div class="form-group full-width">
-                    <input type="text" placeholder="Project Subject">
+                    <input type="text" name="project_subject" placeholder="Project Subject">
                 </div>
                 <div class="form-group full-width">
-                    <textarea placeholder="Tell us about your project..."></textarea>
+                    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+                </div>
+                <div class="form-group full-width captcha-group">
+                    <label style="font-size:0.9rem;color:#ccc;margin-bottom:6px;display:block;">Verify you're human</label>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <canvas id="captchaCanvas" width="140" height="44" style="border-radius:6px;background:#1a2a3a;"></canvas>
+                        <button type="button" id="refreshCaptcha" title="New captcha" style="background:none;border:none;color:var(--gold);font-size:1.2rem;cursor:pointer;"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                    <input type="text" id="captchaInput" placeholder="Enter code" required autocomplete="off" style="margin-top:8px;width:140px;">
                 </div>
                 <div class="form-submit">
                     <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"
                             style="margin-left:8px;"></i></button>
                 </div>
+                <p class="form-status" aria-live="polite" style="margin-top:12px;"></p>
             </form>
         </div>
     </section>

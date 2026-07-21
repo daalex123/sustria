@@ -264,17 +264,102 @@ gsap.to('.about-image-secondary', {
     ease: 'none'
 });
 
+// Text image CAPTCHA
+let captchaCode = '';
+function generateCaptcha () {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+    captchaCode = '';
+    for (let i = 0; i < 5; i++) captchaCode += chars[Math.floor(Math.random() * chars.length)];
+    const canvas = document.getElementById('captchaCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Noise dots
+    for (let i = 0; i < 40; i++) {
+        ctx.fillStyle = `rgba(${Math.random() * 255 | 0},${Math.random() * 255 | 0},${Math.random() * 255 | 0},0.3)`;
+        ctx.beginPath();
+        ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1.2, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    // Noise lines
+    for (let i = 0; i < 4; i++) {
+        ctx.strokeStyle = `rgba(${Math.random() * 255 | 0},${Math.random() * 255 | 0},${Math.random() * 255 | 0},0.25)`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.stroke();
+    }
+    // Draw each character with random color, size, rotation
+    const colors = ['#e0c97b', '#4fc3f7', '#ff7043', '#aed581', '#ce93d8', '#fff176'];
+    const fonts = ['bold 24px Raleway', 'italic 22px Playfair Display', 'bold 26px Raleway', '24px Raleway', 'bold 20px Raleway'];
+    for (let i = 0; i < captchaCode.length; i++) {
+        ctx.save();
+        const x = 14 + i * 24;
+        const y = canvas.height / 2 + (Math.random() * 8 - 4);
+        ctx.translate(x, y);
+        ctx.rotate((Math.random() - 0.5) * 0.5);
+        ctx.font = fonts[Math.floor(Math.random() * fonts.length)];
+        ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+        ctx.textBaseline = 'middle';
+        ctx.fillText(captchaCode[i], 0, 0);
+        ctx.restore();
+    }
+}
+generateCaptcha();
+document.getElementById('refreshCaptcha').addEventListener('click', generateCaptcha);
+
 // Form submission
 document.querySelector('.contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const form = e.target;
     const btn = e.target.querySelector('.btn-primary');
-    btn.innerHTML = 'Message Sent! <i class="fas fa-check" style="margin-left:8px;"></i>';
-    btn.style.background = '#27ae60';
-    setTimeout(() => {
-        btn.innerHTML = 'Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>';
-        btn.style.background = '';
-        e.target.reset();
-    }, 3000);
+    const status = form.querySelector('.form-status');
+    const captchaInput = document.getElementById('captchaInput');
+    const originalBtn = 'Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>';
+
+    // Validate CAPTCHA
+    if (captchaInput.value.trim().toLowerCase() !== captchaCode.toLowerCase()) {
+        status.textContent = 'Incorrect code. Please try again.';
+        status.style.color = '#e74c3c';
+        generateCaptcha();
+        captchaInput.value = '';
+        return;
+    }
+
+    const formData = new FormData(form);
+    formData.delete('captchaInput');
+
+    btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="margin-left:8px;"></i>';
+    btn.disabled = true;
+    status.textContent = '';
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+        .then(async (response) => {
+            if (response.ok) {
+                status.textContent = 'Thank you! Your message has been sent successfully.';
+                status.style.color = '#27ae60';
+                form.reset();
+                generateCaptcha();
+                return;
+            }
+
+            const data = await response.json().catch(() => ({}));
+            throw new Error(data.message || 'Something went wrong. Please try again.');
+        })
+        .catch((error) => {
+            status.textContent = error.message;
+            status.style.color = '#e74c3c';
+        })
+        .finally(() => {
+            btn.innerHTML = originalBtn;
+            btn.disabled = false;
+        });
 });
 
 // Newsletter form

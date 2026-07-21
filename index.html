@@ -2,6 +2,13 @@
 <html lang="en" itemscope itemtype="https://schema.org/WebSite">
 
 <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M5MSLK93');</script>
+<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -115,14 +122,12 @@
     <!-- Main stylesheet — keep render-blocking to avoid CLS from late layout -->
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Deferred third-party CSS + GTM after first paint -->
+    <!-- Deferred third-party CSS after first paint (GTM loads once via head snippet) -->
     <script>
-    window.dataLayer = window.dataLayer || [];
     function loadCSS(href){var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);}
     function loadDeferredAssets(){
       loadCSS('https://unpkg.com/aos@2.3.1/dist/aos.css');
       loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
-      var j=document.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=GTM-M5MSLK93';document.head.appendChild(j);
     }
     if('requestIdleCallback' in window){requestIdleCallback(loadDeferredAssets,{timeout:3000});}
     else{window.addEventListener('load',function(){setTimeout(loadDeferredAssets,1500);});}
@@ -540,10 +545,10 @@
 </head>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MSLK93"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+ <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MSLK93"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
     <!-- Custom Cursor -->
     <div class="cursor"></div>

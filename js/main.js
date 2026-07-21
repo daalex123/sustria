@@ -485,8 +485,9 @@ let galleryImages = [];
 const pvCards = document.querySelectorAll('.pv-card');
 pvCards.forEach((card, index) => {
     const imgSrc = card.getAttribute('data-img');
-    const title = card.querySelector('h4').textContent;
-    galleryImages.push({ src: imgSrc, title: title });
+    const titleEl = card.querySelector('h3, h4');
+    const title = titleEl ? titleEl.textContent.trim() : (card.querySelector('img')?.alt || 'Project');
+    if (imgSrc) galleryImages.push({ src: imgSrc, title: title });
 
     card.addEventListener('click', () => {
         currentImageIndex = index;
@@ -495,57 +496,68 @@ pvCards.forEach((card, index) => {
 });
 
 function openLightbox (index) {
+    if (!lightbox || !lightboxImg || !galleryImages[index]) return;
     lightboxImg.src = galleryImages[index].src;
-    lightboxCaption.textContent = galleryImages[index].title;
+    if (lightboxCaption) lightboxCaption.textContent = galleryImages[index].title;
     lightbox.classList.add('active');
 }
 
-closeLightboxBtn.addEventListener('click', () => {
-    lightbox.classList.remove('active');
-});
-
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
+if (closeLightboxBtn) {
+    closeLightboxBtn.addEventListener('click', () => {
         lightbox.classList.remove('active');
-    }
-});
+    });
+}
 
-prevBtn.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentImageIndex].src;
-    lightboxCaption.textContent = galleryImages[currentImageIndex].title;
-});
+if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+        }
+    });
+}
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        if (!galleryImages.length) return;
+        currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+        openLightbox(currentImageIndex);
+    });
+}
 
-nextBtn.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentImageIndex].src;
-    lightboxCaption.textContent = galleryImages[currentImageIndex].title;
-});
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        if (!galleryImages.length) return;
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+        openLightbox(currentImageIndex);
+    });
+}
 
 // Keyboard navigation in lightbox
 document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('active')) return;
-    if (e.key === 'ArrowLeft') prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn.click();
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft' && prevBtn) prevBtn.click();
+    if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
 });
 
-// Also open lightbox from main project cards
+// Also open lightbox from main project cards (supports data-bg and inline style)
 document.querySelectorAll('.project-card').forEach((card) => {
     card.addEventListener('click', () => {
         const bg = card.querySelector('.project-bg');
-        const style = bg.getAttribute('style');
+        if (!bg) return;
+        const dataBg = bg.getAttribute('data-bg');
+        const style = bg.getAttribute('style') || '';
         const urlMatch = style.match(/url\(['"]?(.+?)['"]?\)/);
-        if (urlMatch) {
-            const src = urlMatch[1];
-            const title = card.querySelector('.project-title').textContent;
-            const idx = galleryImages.findIndex(img => img.src === src);
-            if (idx !== -1) {
-                currentImageIndex = idx;
-            } else {
-                galleryImages.push({ src, title });
-                currentImageIndex = galleryImages.length - 1;
-            }
-            openLightbox(currentImageIndex);
+        const src = dataBg || (urlMatch ? urlMatch[1] : '') || (bg.style.backgroundImage || '').replace(/^url\(["']?|["']?\)$/g, '');
+        if (!src) return;
+
+        const titleEl = card.querySelector('.project-title, h3, h4');
+        const title = titleEl ? titleEl.textContent.trim() : 'Project';
+        const idx = galleryImages.findIndex(img => img.src === src);
+        if (idx !== -1) {
+            currentImageIndex = idx;
+        } else {
+            galleryImages.push({ src, title });
+            currentImageIndex = galleryImages.length - 1;
         }
+        openLightbox(currentImageIndex);
     });
 });

@@ -86,23 +86,24 @@
     <link rel="dns-prefetch" href="https://api.web3forms.com">
 
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="images/1.jpg" as="image">
+    <link rel="preload" href="images/1.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="css/styles.css" as="style">
-    <link rel="preload" href="js/main.js" as="script">
 
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap"
         rel="stylesheet">
 
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- AOS Animation Library (non-render-blocking) -->
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Font Awesome (non-render-blocking) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -658,14 +659,14 @@
                 <div class="about-vm-cards">
                     <div class="about-vm-card" data-aos="fade-up" data-aos-delay="100">
                         <i class="fas fa-eye"></i>
-                        <h4>Our Vision</h4>
+                        <h3>Our Vision</h3>
                         <p>To pioneer affordable, zero-energy-cost homes that harmonize sustainability, peace, and
                             innovation—creating living spaces that respect nature, nurture well-being, and empower
                             communities to thrive.</p>
                     </div>
                     <div class="about-vm-card" data-aos="fade-up" data-aos-delay="200">
                         <i class="fas fa-bullseye"></i>
-                        <h4>Our Mission</h4>
+                        <h3>Our Mission</h3>
                         <p>To design and build affordable, sustainable homes that eliminate energy costs, promote
                             peaceful
                             living, and embrace modern aesthetics—combining innovative thinking, expert knowledge, and
@@ -1210,7 +1211,8 @@
                     <input type="tel" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-group">
-                    <select name="service">
+                    <label for="service-select" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Select Service</label>
+                    <select name="service" id="service-select">
                         <option value="" disabled selected>Select Service</option>
                         <option value="construction">Construction</option>
                         <option value="interior">Interior Design</option>
@@ -1295,16 +1297,16 @@
     </footer>
 
     <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop">
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>

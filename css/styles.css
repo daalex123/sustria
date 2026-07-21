@@ -835,7 +835,7 @@ section {
     display: block;
 }
 
-.about-vm-card h4 {
+.about-vm-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
     color: var(--navy);

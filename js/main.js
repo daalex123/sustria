@@ -1,16 +1,35 @@
-// Preloader
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.querySelector('.preloader').classList.add('hidden');
-    }, 1500);
+// Lazy-load CSS background images (projects + deferred hero slides)
+function applyBg(el) {
+    const src = el.getAttribute('data-bg');
+    if (!src || el.style.backgroundImage) return;
+    el.style.backgroundImage = `url('${src}')`;
+    el.removeAttribute('data-bg');
+}
+
+const lazyBgObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                applyBg(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '200px 0px' })
+    : null;
+
+document.querySelectorAll('[data-bg]').forEach(el => {
+    if (el.closest('.hero-swiper')) return; // hero slides handled by Swiper
+    if (lazyBgObserver) lazyBgObserver.observe(el);
+    else applyBg(el);
 });
 
 // AOS Initialization
 AOS.init({
-    duration: 1000,
+    duration: 800,
     once: true,
-    offset: 100,
-    easing: 'ease-out-cubic'
+    offset: 80,
+    easing: 'ease-out-cubic',
+    disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
 });
 
 // Navbar Scroll Effect
@@ -21,7 +40,7 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}, { passive: true });
 
 // Mobile Menu
 const hamburger = document.getElementById('hamburger');
@@ -60,22 +79,46 @@ new Swiper('.testimonial-swiper', {
     }
 });
 
-// Hero Image Slider
+// Hero Image Slider — start autoplay after first paint to protect Speed Index
 new Swiper('.hero-swiper', {
     loop: true,
-    speed: 1500,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
+    speed: 1200,
+    autoplay: false,
     effect: 'fade',
     fadeEffect: {
         crossFade: true
     },
     on: {
+        init: function () {
+            this.slides.forEach(slide => {
+                const bg = slide.querySelector('.hero-slide-bg[data-bg]');
+                if (bg && slide.classList.contains('swiper-slide-active')) applyBg(bg);
+            });
+            const swiper = this;
+            const start = () => {
+                if (!swiper.autoplay.running) {
+                    swiper.params.autoplay = { delay: 5000, disableOnInteraction: false };
+                    swiper.autoplay.start();
+                }
+            };
+            if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 4000 });
+            else setTimeout(start, 3000);
+        },
+        slideChange: function () {
+            const active = this.slides[this.activeIndex];
+            if (active) {
+                const bg = active.querySelector('.hero-slide-bg[data-bg]');
+                if (bg) applyBg(bg);
+            }
+            const next = this.slides[this.activeIndex + 1] || this.slides[0];
+            if (next) {
+                const bg = next.querySelector('.hero-slide-bg[data-bg]');
+                if (bg) applyBg(bg);
+            }
+        },
         slideChangeTransitionStart: function () {
             document.querySelectorAll('.hero-slide-bg').forEach(bg => {
-                bg.style.transform = 'scale(1.1)';
+                bg.style.transform = 'scale(1.05)';
             });
         },
         slideChangeTransitionEnd: function () {
@@ -150,28 +193,23 @@ document.querySelectorAll('a, button, .service-card, .project-card').forEach(el 
     });
 });
 
-// Hero Particles
+// Hero Particles (lighter for main-thread)
 const particlesContainer = document.getElementById('particles');
-for (let i = 0; i < 30; i++) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animationDelay = Math.random() * 6 + 's';
-    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-    particlesContainer.appendChild(particle);
+if (particlesContainer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const count = window.innerWidth < 768 ? 12 : 20;
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+        particlesContainer.appendChild(particle);
+    }
 }
 
-// GSAP Animations
+// GSAP Animations — keep hero content visible for LCP (no opacity:0 delay)
 gsap.registerPlugin(ScrollTrigger);
-
-gsap.from('.hero-content', {
-    opacity: 0,
-    y: 50,
-    duration: 1.5,
-    ease: 'power3.out',
-    delay: 1.8
-});
 
 // Smooth reveal for service cards
 gsap.utils.toArray('.service-card').forEach((card, i) => {
@@ -401,15 +439,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Typing effect for hero badge (subtle)
-const heroBadge = document.querySelector('.hero-badge');
-if (heroBadge) {
-    heroBadge.style.opacity = '0';
-    setTimeout(() => {
-        heroBadge.style.transition = 'opacity 1s ease';
-        heroBadge.style.opacity = '1';
-    }, 2000);
-}
+// Keep hero badge visible for LCP — no delayed fade-in
 
 // ========== Full Page Projects Viewer ==========
 const projectsViewer = document.getElementById('projectsViewer');

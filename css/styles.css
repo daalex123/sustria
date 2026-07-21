@@ -227,6 +227,7 @@ body {
 }
 
 .nav-cta {
+    display: inline-block;
     padding: 12px 30px;
     background: transparent;
     border: 1px solid var(--gold);
@@ -407,7 +408,7 @@ body {
 .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: 5.5rem;
-    font-weight: 900;
+    font-weight: 700;
     color: var(--white);
     line-height: 1.05;
     margin-bottom: 25px;
@@ -428,7 +429,7 @@ body {
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.9;
     margin-bottom: 55px;
-    font-weight: 300;
+    font-weight: 400;
     max-width: 650px;
     margin-left: auto;
     margin-right: auto;
@@ -533,6 +534,27 @@ body {
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .hero-scroll,
+    .particle,
+    .preloader-logo {
+        animation: none !important;
+    }
+}
+
+/* Defer offscreen work for below-fold sections */
+.about,
+.services,
+.projects,
+.process,
+.testimonials,
+.faq,
+.contact,
+.footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 800px;
+}
+
 .hero-scroll i {
     font-size: 1.2rem;
     color: var(--gold);
@@ -602,7 +624,7 @@ section {
     color: var(--text-light);
     line-height: 1.9;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /* About Section */
@@ -745,7 +767,7 @@ section {
 .about-experience-badge .number {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1;
     text-align: center;
 }
@@ -1024,7 +1046,7 @@ section {
     right: 20px;
     font-family: 'Playfair Display', serif;
     font-size: 4rem;
-    font-weight: 900;
+    font-weight: 700;
     color: rgba(26, 31, 58, 0.05);
     line-height: 1;
     z-index: 1;
@@ -1119,7 +1141,7 @@ section {
 .stat-number {
     font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
-    font-weight: 900;
+    font-weight: 700;
     color: var(--gold);
     line-height: 1;
     margin-bottom: 10px;
@@ -1278,6 +1300,7 @@ section {
 .project-bg {
     width: 100%;
     height: 100%;
+    background-color: #0d1b2a;
     background-size: cover;
     background-position: center;
     filter: brightness(0.92) saturate(0.9);
@@ -2025,7 +2048,7 @@ section {
     color: var(--white);
     font-family: 'Raleway', sans-serif;
     font-size: 0.9rem;
-    font-weight: 300;
+    font-weight: 400;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     outline: none;
     border-radius: 2px;
@@ -2034,7 +2057,7 @@ section {
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: rgba(255, 255, 255, 0.35);
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .form-group input:focus,

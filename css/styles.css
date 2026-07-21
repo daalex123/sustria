@@ -1460,7 +1460,7 @@ section {
     font-weight: 600;
 }
 
-.pv-card-overlay h4 {
+.pv-card-overlay h3 {
     font-family: 'Playfair Display', serif;
     color: var(--white);
     font-size: 1.2rem;
@@ -1961,7 +1961,7 @@ section {
     border-color: var(--gold);
 }
 
-.contact-item-text h4 {
+.contact-item-text h3 {
     color: var(--white);
     font-size: 1rem;
     margin-bottom: 5px;

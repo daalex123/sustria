@@ -2,13 +2,6 @@
 <html lang="en" itemscope itemtype="https://schema.org/WebSite">
 
 <head>
-        <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-M5MSLK93');</script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -68,40 +61,31 @@
     <meta name="classification" content="Construction, Interior Design, Consultancy">
     <meta name="subject" content="Sustainable Construction and Interior Design Services in Sri Lanka">
     <meta name="application-name" content="SUSTREIA">
-    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
-    <link rel="apple-touch-icon" href="images/logo.jpeg">
+    <link rel="icon" type="image/webp" href="images/logo-sm.webp">
+    <link rel="apple-touch-icon" href="images/logo.webp">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
     <!-- Preconnect & DNS Prefetch for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://api.web3forms.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="images/1.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="images/1.webp" as="image" type="image/webp" fetchpriority="high">
     <link rel="preload" href="css/styles.css" as="style">
 
-    <!-- Google Fonts (non-render-blocking) -->
-    <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap"
-        as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"></noscript>
+    <!-- Google Fonts (non-blocking, fewer weights) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
-    <!-- AOS Animation Library (non-render-blocking) -->
+    <!-- AOS / Swiper / Font Awesome (non-render-blocking) -->
     <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
-
-    <!-- Swiper CSS (non-render-blocking) -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
-
-    <!-- Font Awesome (non-render-blocking) -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -110,13 +94,19 @@
         .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
         .hero-slider,.hero-swiper,.swiper-wrapper,.swiper-slide{position:absolute;inset:0;width:100%;height:100%}
         .hero-slide-bg{width:100%;height:100%;background-size:cover;background-position:center}
-        .hero-content{position:relative;z-index:2;text-align:center;padding:0 5%}
+        .hero-content{position:relative;z-index:2;text-align:center;padding:0 5%;opacity:1;visibility:visible}
         .hero-overlay{position:absolute;inset:0;background:rgba(13,27,42,0.7);z-index:1}
-        .preloader{position:fixed;inset:0;background:#0d1b2a;z-index:99999;display:flex;align-items:center;justify-content:center}
     </style>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Deferred Google Tag Manager (after first paint) -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function loadGTM(){var i='GTM-M5MSLK93';var j=document.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;document.head.appendChild(j);}
+    if('requestIdleCallback' in window){requestIdleCallback(loadGTM,{timeout:3500});}else{window.addEventListener('load',function(){setTimeout(loadGTM,2500);});}
+    </script>
 
     <!-- Structured Data: Organization (JSON-LD) -->
     <script type="application/ld+json">
@@ -535,16 +525,6 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-content">
-            <div class="preloader-progress">
-                <div class="preloader-progress-bar"></div>
-            </div>
-            <span class="preloader-text">Loading...</span>
-        </div>
-    </div>
-
     <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-dot"></div>
@@ -552,7 +532,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar" aria-label="Main navigation">
         <a href="#" class="nav-logo" aria-label="SUSTREIA - Home">
-            <img src="images/logo.jpeg" alt="SUSTREIA - Sustainable Construction Company Sri Lanka" width="60" height="60">
+            <img src="images/logo-sm.webp" alt="SUSTREIA - Sustainable Construction Company Sri Lanka" width="60" height="60" decoding="async">
             <!-- <span class="nav-logo-text">SUSTREIA</span> -->
         </a>
         <ul class="nav-links">
@@ -591,21 +571,17 @@
             <div class="swiper hero-swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="hero-slide-bg" style="background-image: url('images/1.jpg');"></div>
+                        <div class="hero-slide-bg" style="background-image: url('images/1.webp');"></div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="hero-slide-bg" style="background-image: url('images/Luxury_house_2.jpeg');"></div>
+                        <div class="hero-slide-bg" data-bg="images/Luxury_house_2.webp"></div>
                     </div>
-
                     <div class="swiper-slide">
-                        <div class="hero-slide-bg" style="background-image: url('images/2.jpg');"></div>
+                        <div class="hero-slide-bg" data-bg="images/2.webp"></div>
                     </div>
-
                     <div class="swiper-slide">
-                        <div class="hero-slide-bg" style="background-image: url('images/3.jpg');"></div>
+                        <div class="hero-slide-bg" data-bg="images/3.webp"></div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -613,17 +589,17 @@
         <div class="hero-pattern"></div>
         <div class="hero-particles" id="particles"></div>
         <div class="hero-content">
-            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">Construction • Interior • Consultancy
+            <div class="hero-badge">Construction • Interior • Consultancy
             </div>
-            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="400">
+            <h1 class="hero-title">
                 Building Dreams,
                 <span>Designing Futures</span>
             </h1>
-            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="600">
+            <p class="hero-subtitle">
                 We craft sustainable, innovative spaces that inspire. From concept to completion,
                 SUSTREIA delivers excellence in construction, interior design, and expert consultancy.
             </p>
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800">
+            <div class="hero-buttons">
                 <a href="#projects" class="btn-primary">View Our Work</a>
                 <a href="#contact" class="btn-secondary">Start a Project</a>
             </div>
@@ -640,10 +616,10 @@
             <div class="about-image" data-aos="fade-right">
                 <div class="about-image-wrapper">
                     <div class="about-image-main">
-                        <img src="images/Luxury_house_2.jpeg" alt="Luxury sustainable house designed and built by SUSTREIA in Sri Lanka" loading="lazy" width="600" height="400">
+                        <img src="images/Luxury_house_2.webp" alt="Luxury sustainable house designed and built by SUSTREIA in Sri Lanka" loading="lazy" width="600" height="400" decoding="async">
                     </div>
                     <div class="about-image-secondary">
-                        <img src="images/logo.jpeg" alt="SUSTREIA sustainable construction company logo" loading="lazy" width="200" height="200">
+                        <img src="images/logo.webp" alt="SUSTREIA sustainable construction company logo" loading="lazy" width="200" height="200" decoding="async">
                     </div>
                     <div class="about-decorative-frame"></div>
                     <div class="about-experience-badge">
@@ -811,7 +787,7 @@
         </div>
         <div class="projects-grid">
             <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-bg" style="background-image: url('images/projects/Front View.jpg');"></div>
+                <div class="project-bg" data-bg="images/projects/Front View.webp"></div>
                 <div class="project-overlay">
                     <span class="project-category">Construction</span>
                     <h3 class="project-title">Front View Design</h3>
@@ -819,7 +795,7 @@
                 <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
             </div>
             <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="project-bg" style="background-image: url('images/projects/Front elevation.jpg');"></div>
+                <div class="project-bg" data-bg="images/projects/Front elevation.webp"></div>
                 <div class="project-overlay">
                     <span class="project-category">Architecture</span>
                     <h3 class="project-title">Front Elevation</h3>
@@ -827,7 +803,7 @@
                 <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
             </div>
             <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="project-bg" style="background-image: url('images/projects/Front coner view.jpg');"></div>
+                <div class="project-bg" data-bg="images/projects/Front coner view.webp"></div>
                 <div class="project-overlay">
                     <span class="project-category">Interior</span>
                     <h3 class="project-title">Corner View Design</h3>
@@ -835,7 +811,7 @@
                 <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
             </div>
             <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="project-bg" style="background-image: url('images/projects/2.jpeg');"></div>
+                <div class="project-bg" data-bg="images/projects/2.webp"></div>
                 <div class="project-overlay">
                     <span class="project-category">3D Design</span>
                     <h3 class="project-title">3D Front View</h3>
@@ -843,7 +819,7 @@
                 <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
             </div>
             <div class="project-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="project-bg" style="background-image: url('images/projects/Left hand Coner.jpg');"></div>
+                <div class="project-bg" data-bg="images/projects/Left hand Coner.webp"></div>
                 <div class="project-overlay">
                     <span class="project-category">Construction</span>
                     <h3 class="project-title">Left Corner View</h3>

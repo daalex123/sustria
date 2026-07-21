@@ -264,6 +264,22 @@ gsap.to('.about-image-secondary', {
     ease: 'none'
 });
 
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item.active').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isActive) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+});
+
 // Text image CAPTCHA
 let captchaCode = '';
 function generateCaptcha () {

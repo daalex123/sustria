@@ -1,0 +1,32 @@
+# robots.txt for SUSTREIA
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+
+# Sitemaps
+Sitemap: https://www.sustreia.com/sitemap.xml
+
+# Crawl-delay (optional, polite)
+Crawl-delay: 1
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /

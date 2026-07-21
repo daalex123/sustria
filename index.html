@@ -2,18 +2,16 @@
 <html lang="en" itemscope itemtype="https://schema.org/WebSite">
 
 <head>
+        <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M5MSLK93');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0THXHE3W2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-F0THXHE3W2');
-    </script>
-
+    
     <title>SUSTREIA | Sustainable Construction, Interior Design & Consultancy in Sri Lanka</title>
 
     <!-- Primary SEO Meta Tags -->
@@ -89,21 +87,33 @@
     <link rel="preload" href="images/1.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="css/styles.css" as="style">
 
-    <!-- Google Fonts -->
-    <link
+    <!-- Google Fonts (non-render-blocking) -->
+    <link rel="preload"
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap"
-        rel="stylesheet">
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"></noscript>
 
     <!-- AOS Animation Library (non-render-blocking) -->
     <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
 
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Swiper CSS (non-render-blocking) -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
 
     <!-- Font Awesome (non-render-blocking) -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <!-- Critical inline CSS for above-fold (prevents FOUC) -->
+    <style>
+        .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+        .hero-slider,.hero-swiper,.swiper-wrapper,.swiper-slide{position:absolute;inset:0;width:100%;height:100%}
+        .hero-slide-bg{width:100%;height:100%;background-size:cover;background-position:center}
+        .hero-content{position:relative;z-index:2;text-align:center;padding:0 5%}
+        .hero-overlay{position:absolute;inset:0;background:rgba(13,27,42,0.7);z-index:1}
+        .preloader{position:fixed;inset:0;background:#0d1b2a;z-index:99999;display:flex;align-items:center;justify-content:center}
+    </style>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -520,6 +530,11 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MSLK93"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-content">
@@ -537,7 +552,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar" aria-label="Main navigation">
         <a href="#" class="nav-logo" aria-label="SUSTREIA - Home">
-            <img src="images/logo.jpeg" alt="SUSTREIA - Sustainable Construction Company Sri Lanka">
+            <img src="images/logo.jpeg" alt="SUSTREIA - Sustainable Construction Company Sri Lanka" width="946" height="1509">
             <!-- <span class="nav-logo-text">SUSTREIA</span> -->
         </a>
         <ul class="nav-links">
@@ -850,63 +865,63 @@
         </div>
         <div class="projects-viewer-grid">
             <div class="pv-card" data-img="images/projects/Front View.jpg">
-                <img src="images/projects/Front View.jpg" alt="Modern sustainable home front view design by SUSTREIA Sri Lanka" loading="lazy">
+                <img src="images/projects/Front View.jpg" alt="Modern sustainable home front view design by SUSTREIA Sri Lanka" loading="lazy" width="1200" height="675">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Construction</span>
                     <h4>Front View Design</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/Front elevation.jpg">
-                <img src="images/projects/Front elevation.jpg" alt="Architectural front elevation drawing for eco-friendly home in Wattala" loading="lazy">
+                <img src="images/projects/Front elevation.jpg" alt="Architectural front elevation drawing for eco-friendly home in Wattala" loading="lazy" width="1200" height="675">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Architecture</span>
                     <h4>Front Elevation</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/Front coner view.jpg">
-                <img src="images/projects/Front coner view.jpg" alt="Corner view of sustainable residential construction project" loading="lazy">
+                <img src="images/projects/Front coner view.jpg" alt="Corner view of sustainable residential construction project" loading="lazy" width="1200" height="675">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Interior</span>
                     <h4>Corner View Design</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/3d front view (Mr sampath) - Copy.jpg">
-                <img src="images/projects/3d front view (Mr sampath) - Copy.jpg" alt="3D rendered front view of luxury home design by SUSTREIA" loading="lazy">
+                <img src="images/projects/3d front view (Mr sampath) - Copy.jpg" alt="3D rendered front view of luxury home design by SUSTREIA" loading="lazy" width="1200" height="957">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">3D Design</span>
                     <h4>3D Front View</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/Left hand Coner.jpg">
-                <img src="images/projects/Left hand Coner.jpg" alt="Left corner perspective of green building project in Sri Lanka" loading="lazy">
+                <img src="images/projects/Left hand Coner.jpg" alt="Left corner perspective of green building project in Sri Lanka" loading="lazy" width="1200" height="675">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Construction</span>
                     <h4>Left Corner View</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/Front View 2.jpg">
-                <img src="images/projects/Front View 2.jpg" alt="Contemporary home front view with sustainable design elements" loading="lazy">
+                <img src="images/projects/Front View 2.jpg" alt="Contemporary home front view with sustainable design elements" loading="lazy" width="1200" height="675">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Architecture</span>
                     <h4>Front View Alternate</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/Front view.jpg">
-                <img src="images/projects/Front view.jpg" alt="Residential front view design with energy-efficient architecture" loading="lazy">
+                <img src="images/projects/Front view.jpg" alt="Residential front view design with energy-efficient architecture" loading="lazy" width="1200" height="675">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Design</span>
                     <h4>Residential Front View</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/acdf9e43-a701-4cfe-b601-2d0c4e9429b0.jpg">
-                <img src="images/projects/acdf9e43-a701-4cfe-b601-2d0c4e9429b0.jpg" alt="Custom architectural project design by SUSTREIA construction company" loading="lazy">
+                <img src="images/projects/acdf9e43-a701-4cfe-b601-2d0c4e9429b0.jpg" alt="Custom architectural project design by SUSTREIA construction company" loading="lazy" width="1200" height="957">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Construction</span>
                     <h4>Modern Residence</h4>
                 </div>
             </div>
             <div class="pv-card" data-img="images/projects/bb220d49-2ee7-4486-8cb9-00356ff72fb6.jpg">
-                <img src="images/projects/bb220d49-2ee7-4486-8cb9-00356ff72fb6.jpg" alt="Interior and exterior project design by SUSTREIA Wattala" loading="lazy">
+                <img src="images/projects/bb220d49-2ee7-4486-8cb9-00356ff72fb6.jpg" alt="Interior and exterior project design by SUSTREIA Wattala" loading="lazy" width="1200" height="675">
                 <div class="pv-card-overlay">
                     <span class="pv-card-cat">Architecture</span>
                     <h4>Contemporary Design</h4>
